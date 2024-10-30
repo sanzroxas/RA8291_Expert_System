@@ -20,7 +20,7 @@ To run this project, you need to have Python installed on your system. Follow th
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/sanzroxas/RA8291_Compliance_System.git
+   git clone https://github.com/sanzroxas/RA8291_Expert_System.git
 
 2. Change into the project directory:
    ```bash
