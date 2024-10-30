@@ -24,7 +24,7 @@ To run this project, you need to have Python installed on your system. Follow th
 
 2. Change into the project directory:
    ```bash
-   cd RA8291_Compliance_System
+   cd RA8291_Expert_System
 
 ## Usage
 1. Run the application:
