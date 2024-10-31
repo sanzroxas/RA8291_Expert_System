@@ -149,24 +149,16 @@ class DecisionTree:
         if response == 'yes':
             self.step_function = self.government_offices_delay
             return "Has there been a failure or delay in remitting these accounts within 30 days?"
-        self.compliance_result.append("This topic might not be relevant to you.")  # Updated here
-        return self.show_compliance_result()  # Update this call
+        self.compliance_result.append("This topic might not be relevant to you.")
+        return self.show_compliance_result()
 
     def government_offices_delay(self, response):
         if response == 'yes':
-            self.compliance_result.append("Violation Clause: Delays result in penalties.")  # Updated here
-            self.compliance_result.append("Penalty: Imprisonment of 1 to 5 years, and a fine of P10,000 to P20,000.")  # Updated here
-            return self.show_compliance_result()  # Update this call
-        self.step_function = self.government_offices_civil_liability
-        return "Are civil liabilities applicable for delayed remittance?"
-
-    def government_offices_civil_liability(self, response):
-        if response == 'yes':
-            self.compliance_result.append("Violation Clause: Civil liabilities apply to late remittances.")  # Updated here
-            self.compliance_result.append("Penalty: Administrative fines may apply.")  # Updated here
-            return self.show_compliance_result()  # Update this call
-        self.compliance_result.append("Compliance with national office remittance obligations.")  # Updated here
-        return self.show_compliance_result()  # Update this call
+            self.compliance_result.append("Violation Clause: Delays result in penalties.")
+            self.compliance_result.append("Penalty: The heads of offices and agencies shall be administratively liable for non-remittance or delayed remittance of premium contributions to the GSIS. Imprisonment of 1 to 5 years, and a fine of P10,000 to P20,000.")
+        else:
+            self.compliance_result.append("Compliance with national office remittance obligations.")
+        return self.show_compliance_result()
 
     def board_member_responsibilities(self, response=None):
         if response is None:
