@@ -25,12 +25,20 @@ html, body {
     background-color: #2B2B2B;
     padding: 40px 64px;
 }
+.left-div-container {
+    box-sizing: border-box;
+	display: block;
+	float: none;
+	line-height: normal;
+	position: relative;
+}
 .header-text {
     color: #F2F2F2;
     font-size: 38px;
 }
 .subheader-text {
-    color: #DADADA;
+    color: #2B2B2B;
+	font-weight: bold;
     font-size: 16px;
     line-height: 1.5;
     max-width: 960px;
@@ -90,7 +98,7 @@ html, body {
     background-color: #2B2B2B;
     z-index: 1;
     width: 100%;
-    font-size: 38px;
+    font-size: 20px;
     text-align: center;
     color: #F2F2F2;
     border-radius: 0 20px 20px 0;
@@ -122,9 +130,9 @@ html, body {
     max-height: 100%;
     padding: 32px;
     border: 1px solid #515151;
-    margin-bottom: 16px;
     box-shadow: inset 8px 0 0 #a67458;
     font-size: 18px;
+	color: black;
 }
 .choices-container {
     display: flex;

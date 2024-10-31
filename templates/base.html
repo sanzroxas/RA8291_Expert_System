@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RA 8291 Compliance Checker{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="top-container">
+            <h1 class="header-text inclusive-sans-regular">RA 8291 Compliance Checker</h1>
+        </div>
+
+        <div class="main-container">
+            <div class="left-div-container">
+                <div class="bar-background-left">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                    <div class="bar bar4"></div>
+                    <div class="bar bar5"></div>
+                </div>
+                <div class="title-box">
+                    The RA 8291 Compliance Checker helps determine if an action may violate 
+                    provisions of the Government Service Insurance System Act (RA 8291).
+                </div>
+            </div>
+
+            <div class="middle-div-container">
+                <div class="question-box">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+
+            <div class="right-div-container">
+                <div class="bar-background-right">
+                    <div class="bar bar7"></div>
+                    <div class="bar bar8"></div>
+                    <div class="bar bar9"></div>
+                    <div class="bar bar10"></div>
+                </div>
+                <div class="title-box">
+                    This system is designed for informational and reference purposes only. 
+                    It does not constitute legal advice. For accurate guidance and personalized 
+                    assistance, please consult a licensed attorney or legal professional.
+                </div>
+            </div>
+        </div>
+
+        <div class="bar-background-bottom">
+            <div class="disclaimer-container">
+                <p class="disclaimer-text inclusive-sans-regular">Disclaimer: Information provided is for educational purposes.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

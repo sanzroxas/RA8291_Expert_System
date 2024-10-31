@@ -10,56 +10,59 @@
     <div class="container">
         <div class="top-container">
             <h1 class="header-text inclusive-sans-regular">RA 8291 Compliance Checker</h1>
-            {% if question %}
-                <p class="subheader-text inclusive-sans-regular">{{ question }}</p>
-
-                {% if "Please choose a topic" in question %}
-    <form action="/decision" method="POST">
-        <div class="choices-container">
-            <button type="submit" name="response" value="Employer Contribution and Budgeting Obligations" class="yes-button">Employer Contribution and Budgeting Obligations</button>
-            <button type="submit" name="response" value="Fraudulent and Misleading Transactions" class="yes-button">Fraudulent and Misleading Transactions</button>
-            <button type="submit" name="response" value="Compliance with GSIS Regulations" class="yes-button">Compliance with GSIS Regulations</button>
-            <button type="submit" name="response" value="Employee Contributions and Remittance Delays" class="yes-button">Employee Contributions and Remittance Delays</button>
-            <button type="submit" name="response" value="Government Offices and National Compliance" class="yes-button">Government Offices and National Compliance</button>
-            <button type="submit" name="response" value="Board Member Responsibilities" class="yes-button">Board Member Responsibilities</button>
-        </div>
-    </form>
-{% else %}
-    <form action="/decision" method="POST">
-        <div class="choices-container">
-            <button type="submit" name="response" value="yes" class="yes-button">Yes</button>
-            <button type="submit" name="response" value="no" class="no-button">No</button>
-        </div>
-    </form>
-{% endif %}
-
-            {% elif compliance_result %}
-                <p class="subheader-text inclusive-sans-regular">{{ compliance_result }}</p>
-                <form action="/reset" method="POST">
-                    <div class="choices-container">
-                        <button type="submit" name="response" value="another_inquiry" class="back-button">Inquire Again</button>
-                        <button type="submit" formaction="/done" name="response" value="done_inquiring" class="restart-button">Done Inquiring</button>
-                    </div>
-                </form>
-            {% elif message %}
-                <p class="subheader-text inclusive-sans-regular">{{ message }}</p>
-            {% endif %}
         </div>
 
         <div class="main-container">
             <div class="left-div-container">
-                <div class="bar-background-left">
-                    <div class="bar bar1"></div>
-                    <div class="bar bar2"></div>
-                    <div class="bar bar3"></div>
-                    <div class="bar bar4"></div>
-                    <div class="bar bar5"></div>
-                    <div class="bar bar6"></div>
-                </div>
-            </div>
+				<div class="bar-background-left">
+					<div class="bar bar1"></div>
+					<div class="bar bar2"></div>
+					<div class="bar bar3"></div>
+					<div class="bar bar4"></div>
+					<div class="bar bar5"></div>
+				</div>
+				<div class="title-box">The RA 8291 Compliance Checker helps determine if an action may violate 
+                provisions of the Government Service Insurance System Act (RA 8291). 
+				</div><!-- This will be replace by "Question #" or "Result"-->
+			</div>
 
             <div class="middle-div-container">
-                <div class="title-box inclusive-sans-regular">Title Goes Here</div>
+                <div class="question-box">
+                    {% if question %}
+                        <p class="subheader-text inclusive-sans-regular">{{ question }}</p>
+
+                        {% if "Please choose a topic" in question %}
+                            <form action="/decision" method="POST">
+                                <div class="choices-container">
+                                    <button type="submit" name="response" value="Employer Contribution and Budgeting Obligations" class="yes-button">Employer Contribution and Budgeting Obligations</button>
+                                    <button type="submit" name="response" value="Fraudulent and Misleading Transactions" class="yes-button">Fraudulent and Misleading Transactions</button>
+                                    <button type="submit" name="response" value="Compliance with GSIS Regulations" class="yes-button">Compliance with GSIS Regulations</button>
+                                    <button type="submit" name="response" value="Employee Contributions and Remittance Delays" class="yes-button">Employee Contributions and Remittance Delays</button>
+                                    <button type="submit" name="response" value="Government Offices and National Compliance" class="yes-button">Government Offices and National Compliance</button>
+                                    <button type="submit" name="response" value="Board Member Responsibilities" class="yes-button">Board Member Responsibilities</button>
+                                </div>
+                            </form>
+                        {% else %}
+                            <form action="/decision" method="POST">
+                                <div class="choices-container">
+                                    <button type="submit" name="response" value="yes" class="yes-button">Yes</button>
+                                    <button type="submit" name="response" value="no" class="no-button">No</button>
+                                </div>
+                            </form>
+                        {% endif %}
+                    
+                    {% elif compliance_result %}
+                        <p class="subheader-text inclusive-sans-regular">{{ compliance_result }}</p>
+                        <form action="/reset" method="POST">
+                            <div class="choices-container">
+                                <button type="submit" formaction="/reset" name="response" value="another_inquiry" class="yes-button">Go Back to Topics</button>
+                                <button type="submit" formaction="/done" name="response" value="done_inquiring" class="no-button">Done Inquiring</button>
+                            </div>
+                        </form>
+                    {% elif message %}
+                        <p class="subheader-text inclusive-sans-regular">{{ message }}</p>
+                    {% endif %}
+                </div>
                 <!-- Add your content here -->
             </div>
 
@@ -70,6 +73,9 @@
                     <div class="bar bar9"></div>
                     <div class="bar bar10"></div>
                 </div>
+				<div class="title-box">
+                Answer each question with 'Yes' or 'No' to navigate through potential compliance issues. 
+                At the end, the system will indicate if there’s a possible violation, associated penalties, or if no breach was detected.</div>
             </div>
         </div>
 

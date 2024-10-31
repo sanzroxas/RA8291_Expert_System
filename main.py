@@ -56,7 +56,7 @@ class DecisionTree:
         if response == 'yes':
             self.step_function = self.employer_contribution_included
             return "Have you included GSIS contributions in the annual budget appropriations?"
-        self.compliance_result.append("Compliance with employer obligations.")  # Updated here
+        self.compliance_result.append("This topic might not be relevant to you.")  # Updated here
         return self.show_compliance_result()  # Update this call
 
     def employer_contribution_included(self, response):
@@ -124,7 +124,7 @@ class DecisionTree:
         if response == 'yes':
             self.step_function = self.employee_contributions_remittance
             return "Have deducted contributions been remitted within 30 days?"
-        self.compliance_result.append("Compliance with employee remittance obligations.")  # Updated here
+        self.compliance_result.append("This topic might not be relevant to you.")  # Updated here
         return self.show_compliance_result()  # Update this call
 
     def employee_contributions_remittance(self, response):
@@ -149,7 +149,7 @@ class DecisionTree:
         if response == 'yes':
             self.step_function = self.government_offices_delay
             return "Has there been a failure or delay in remitting these accounts within 30 days?"
-        self.compliance_result.append("Compliance with national office remittance obligations.")  # Updated here
+        self.compliance_result.append("This topic might not be relevant to you.")  # Updated here
         return self.show_compliance_result()  # Update this call
 
     def government_offices_delay(self, response):
@@ -174,7 +174,7 @@ class DecisionTree:
         if response == 'yes':
             self.step_function = self.board_member_responsibilities_duties
             return "Have you fulfilled your duties to protect member contributions?"
-        self.compliance_result.append("Compliance with board member responsibilities.")  # Updated here
+        self.compliance_result.append("This topic might not be relevant to you.") # Updated here
         return self.show_compliance_result()  # Update this call
 
     def board_member_responsibilities_duties(self, response):
@@ -187,7 +187,15 @@ class DecisionTree:
 
     def show_compliance_result(self):
         self.compliance_reached = True  # Set the flag when showing compliance results
-        return "\n".join(self.compliance_result) if self.compliance_result else "No violations detected."
+        return "\n".join(
+            self.compliance_result) if self.compliance_result else "No violations detected. Would you like to inquire again?"
+
+    def reset_compliance_state(self):
+        self.current_step = 0
+        self.user_role = None
+        self.compliance_result = []
+        self.step_function = self.start
+        self.compliance_reached = False
 
     def to_dict(self):
         return {
