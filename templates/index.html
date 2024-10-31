@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 8291 Compliance Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="top-container">
+            <h1 class="header-text inclusive-sans-regular">RA 8291 Compliance Checker</h1>
+            {% if question %}
+                <p class="subheader-text inclusive-sans-regular">{{ question }}</p>
+
+                {% if "Please choose a topic" in question %}
+    <form action="/decision" method="POST">
+        <div class="choices-container">
+            <button type="submit" name="response" value="Employer Contribution and Budgeting Obligations" class="yes-button">Employer Contribution and Budgeting Obligations</button>
+            <button type="submit" name="response" value="Fraudulent and Misleading Transactions" class="yes-button">Fraudulent and Misleading Transactions</button>
+            <button type="submit" name="response" value="Compliance with GSIS Regulations" class="yes-button">Compliance with GSIS Regulations</button>
+            <button type="submit" name="response" value="Employee Contributions and Remittance Delays" class="yes-button">Employee Contributions and Remittance Delays</button>
+            <button type="submit" name="response" value="Government Offices and National Compliance" class="yes-button">Government Offices and National Compliance</button>
+            <button type="submit" name="response" value="Board Member Responsibilities" class="yes-button">Board Member Responsibilities</button>
+        </div>
+    </form>
+{% else %}
+    <form action="/decision" method="POST">
+        <div class="choices-container">
+            <button type="submit" name="response" value="yes" class="yes-button">Yes</button>
+            <button type="submit" name="response" value="no" class="no-button">No</button>
+        </div>
+    </form>
+{% endif %}
+
+            {% elif compliance_result %}
+                <p class="subheader-text inclusive-sans-regular">{{ compliance_result }}</p>
+                <form action="/reset" method="POST">
+                    <div class="choices-container">
+                        <button type="submit" name="response" value="another_inquiry" class="back-button">Inquire Again</button>
+                        <button type="submit" formaction="/done" name="response" value="done_inquiring" class="restart-button">Done Inquiring</button>
+                    </div>
+                </form>
+            {% elif message %}
+                <p class="subheader-text inclusive-sans-regular">{{ message }}</p>
+            {% endif %}
+        </div>
+
+        <div class="main-container">
+            <div class="left-div-container">
+                <div class="bar-background-left">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                    <div class="bar bar4"></div>
+                    <div class="bar bar5"></div>
+                    <div class="bar bar6"></div>
+                </div>
+            </div>
+
+            <div class="middle-div-container">
+                <div class="title-box inclusive-sans-regular">Title Goes Here</div>
+                <!-- Add your content here -->
+            </div>
+
+            <div class="right-div-container">
+                <div class="bar-background-right">
+                    <div class="bar bar7"></div>
+                    <div class="bar bar8"></div>
+                    <div class="bar bar9"></div>
+                    <div class="bar bar10"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bar-background-bottom">
+            <div class="disclaimer-container">
+                <p class="disclaimer-text inclusive-sans-regular">Disclaimer: Information provided is for educational purposes.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
