@@ -90,7 +90,7 @@ html, body {
 }
 
 /* Fix this part */
-.title-box {
+.title-box-left {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -102,7 +102,21 @@ html, body {
     text-align: center;
     color: #F2F2F2;
     border-radius: 0 20px 20px 0;
-    padding: 40px 0px;
+    padding: 40px;
+}
+.title-box-right {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2B2B2B;
+    z-index: 1;
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    color: #F2F2F2;
+    border-radius: 20px 0 0 20px;
+    padding: 30px;
 }
 .navigation-box {
     display: flex;
