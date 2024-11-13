@@ -1,22 +1,26 @@
 import secrets
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, url_for
 from main import DecisionTree
 
 app = Flask(__name__)
 secret_key = secrets.token_hex(16)
 app.secret_key = secret_key
 
+
 @app.before_request
 def init_tree():
     if 'tree' not in session:
         session['tree'] = DecisionTree().to_dict()
 
+
 @app.route('/')
 def index():
+    # Start fresh with a new tree
     tree_data = session.get('tree')
-    tree = DecisionTree.from_dict(tree_data)
+    tree = DecisionTree.from_dict(tree_data) if tree_data else DecisionTree()
     question = tree.start()
     session['tree'] = tree.to_dict()
+
     return render_template('index.html', question=question)
 
 @app.route('/decision', methods=['POST'])
@@ -44,7 +48,9 @@ def decision():
             question = "Please choose a topic to inquire about:"  # Updated to remove the topic list
         else:
             # Direct to a goodbye page when they choose No
-            return render_template('goodbye.html', message="Thanks for using our RA 8291 Compliance Checker. Remember that this does not constitute as legal advice")
+            return render_template('goodbye.html',
+                                   message="Thanks for using our RA 8291 Compliance Checker. Remember that this does not constitute as legal advice",
+                                   show_inquire_again=True)
 
     else:
         # Continue with decision-making process
@@ -63,6 +69,18 @@ def decision():
 
 @app.route('/reset', methods=['POST'])
 def reset():
+    # Clear the session to reset the state
+    session.clear()
+
+    # Initialize a new decision tree and save it to the session
+    tree = DecisionTree()
+    session['tree'] = tree.to_dict()
+
+    # Redirect to the main decision route to start fresh
+    return redirect(url_for('index'))
+
+@app.route('/inquire_again', methods=['POST'])
+def inquire_again():
     tree_data = session.get('tree')
     tree = DecisionTree.from_dict(tree_data)
     tree.reset_compliance_state()
@@ -78,7 +96,7 @@ def reset():
             tree.step_function = tree.choose_topic  # Proceed to choose topic
             question = tree.choose_topic()  # Call choose_topic function
         else:
-            return render_template('index.html', message="Thanks for using our RA 8291 Compliance Checker. Remember that this does not constitute as legal advice")
+            return render_template('index.html', message="Thanks for using our RA 8291 Compliance Checker. Remember that this does not constitute as legal advice", show_inquire_again=True)
 
     # Check if the user wants to inquire again after showing compliance results
     elif response.lower() == 'another_inquiry':
@@ -107,7 +125,10 @@ def reset():
 def done():
     # Logic to handle "Done Inquiring"
     session.clear()
-    return render_template('index.html', message="Thanks for using our RA 8291 Compliance Checker. Remember that this does not constitute as legal advice")
+    return render_template('index.html',
+                           message="Thanks for using our RA 8291 Compliance Checker. Remember that this does not constitute legal advice.",
+                           show_inquire_again=True)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
