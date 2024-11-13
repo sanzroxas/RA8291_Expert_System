@@ -13,7 +13,6 @@ The RA 8291 Compliance Decision System is a Python-based application designed to
 - User-friendly interface to navigate through RA 8291 provisions.
 - Decision tree that guides users through relevant questions.
 - Clear explanations of fines and penalties associated with non-compliance.
-- Option for users to ask additional inquiries about the law.
 
 ## Installation
 To run this project, you need to have Python installed on your system. Follow these steps to set up the project locally:
@@ -26,10 +25,14 @@ To run this project, you need to have Python installed on your system. Follow th
    ```bash
    cd RA8291_Expert_System
 
+3. Install Flask:
+   ```bash
+   pip install Flask
+
 ## Usage
 1. Run the application:
       ```bash
-   python main.py
+   python app.py
       
 2. Follow the prompts in the console to answer YES/NO questions about your compliance with RA 8291.
 3. At the end of the inquiry, you will receive information on potential violations and applicable penalties.
