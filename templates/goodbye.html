@@ -6,6 +6,13 @@
 <div class="goodbye-message">
     <h1>Thank you for using the RA 8291 Compliance Checker!</h1>
     <p>We hope you found the information helpful.</p>
-    <a href="/" class="back-button">Return to Start</a>
+    <div class="action-buttons">
+        {% if show_inquire_again %}
+            <form method="POST" action="/reset" >
+                <input type="submit" value="Inquire Again" class="inquire-btn">
+            </form>
+        {% endif %}
+
+</div>
 </div>
 {% endblock %}

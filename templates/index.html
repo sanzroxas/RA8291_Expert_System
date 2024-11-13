@@ -12,6 +12,10 @@
 <body>
     <div class="container">
         <div class="top-container">
+            <a href="{{ url_for('index') }}" class="reload-icon">
+                <img src="{{ url_for('static', filename='reload-icon.png') }}" alt="Reload Icon" class="reload-icon-img">
+            </a>
+            <!-- Header text next to the icon -->
             <h1 class="header-text inclusive-sans-regular">RA 8291 Compliance Checker</h1>
         </div>
 
@@ -58,13 +62,19 @@
                         <p class="subheader-text inclusive-sans-regular">{{ compliance_result }}</p>
                         <form action="/reset" method="POST">
                             <div class="choices-container">
-                                <button type="submit" formaction="/reset" name="response" value="another_inquiry" class="yes-button">Go Back to Topics</button>
+                                <button type="submit" formaction="/inquire_again" name="response" value="another_inquiry" class="yes-button">Go Back to Topics</button>
                                 <button type="submit" formaction="/done" name="response" value="done_inquiring" class="no-button">Done Inquiring</button>
                             </div>
                         </form>
                     {% elif message %}
                         <p class="subheader-text inclusive-sans-regular">{{ message }}</p>
                     {% endif %}
+
+                    {% if show_inquire_again %}
+        <form method="GET" action="/">
+            <input type="submit" value="Inquire Again" class="inquire-btn">
+        </form>
+    {% endif %}
                 </div>
                 <!-- Add your content here -->
             </div>
