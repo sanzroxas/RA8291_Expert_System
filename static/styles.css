@@ -136,6 +136,18 @@ html, body {
     color: #F2F2F2;
     border-radius: 20px 0 0 20px;
 }
+.reload-icon {
+    display: inline-block;
+    vertical-align: middle; /* Align with the text */
+    margin-right: 10px; /* Space between the icon and the header text */
+}
+
+.reload-icon-img {
+    width: 30px; /* Set the size of the icon */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
 .middle-div-container {
     display: flex;
     flex-direction: column;
@@ -175,6 +187,17 @@ html, body {
 .choices-buttons:active {
     background-color: #90512e;
     transition: 0.1s;
+}
+.inquire-btn {
+    padding: 16px;
+    left: 50%;
+    flex: 1;
+    border: 1px solid #979797;
+    color: #2B2B2B;
+    background-color: transparent;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: "Inclusive Sans", sans-serif;
 }
 .no-button {
     padding: 16px;
