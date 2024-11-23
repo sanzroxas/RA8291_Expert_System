@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 8291 Compliance Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="complianceChecker.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="top-container">+
+            <img src="reload-icon.png" class="reload-icon-img">
+            <h1 class="header-text inclusive-sans-regular"> RA 8291 Compliance Checker</h1>
+        </div>
+
+        <div class="main-container">
+            <div class="left-div-container">
+                <div class="bar-background-left">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                    <div class="bar bar4"></div>
+                    <div class="bar bar5"></div>
+                </div>
+                <div class="title-box-left">The RA 8291 Compliance Checker helps determine if an action may violate
+                provisions of the Government Service Insurance System Act (RA 8291).
+                </div>
+            </div>
+
+            <div class="middle-div-container">
+                <div class="question-box" id="question-container">
+                    <div id="question">
+                    </div>
+                </div>
+                <div id="answer-buttons">
+                    <button id="yes-button" class="yes-button">Yes</button>
+                    <button id="no-button" class="no-button">No</button>
+                </div>
+                <div id="choices-buttons">
+                    <button id="done-button" class="done-button" data-link="goodbye.html">Done</button>
+                    <button id="inquire-button" class="inquire-button" data-link="index.html">Inquire Again</button>
+                </div>
+            </div>
+
+            <div class="right-div-container">
+                <div class="bar-background-right">
+                    <div class="bar bar6"></div>
+                    <div class="bar bar7"></div>
+                    <div class="bar bar8"></div>
+                    <div class="bar bar9"></div>
+                    <div class="bar bar10"></div>
+                </div>
+                <div class="title-box-right">
+                    Answer each question with 'Yes' or 'No' to navigate through potential compliance issues.
+                    At the end, the system will indicate if there’s a possible violation, associated penalties, or if no breach was detected.
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-container">
+            <div class="bar-background-bottom"></div>
+            <div class="disclaimer-container">
+                <p class="disclaimer-text inclusive-sans-regular">
+                    This system is designed for informational and reference purposes only.
+                    It does not constitute legal advice. For accurate guidance and personalized
+                    assistance, please consult a licensed attorney or legal professional.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const questionDiv = document.getElementById('question');
+          const yesButton = document.getElementById('yes-button');
+          const noButton = document.getElementById('no-button');
+          const choicesButtonsDiv = document.getElementById('choices-buttons'); // The div containing "Done" and "Inquire Again" buttons
+          
+          // Initial question
+          let question = "Are you involved in the collection or remittance of GSIS contributions?";
+          questionDiv.textContent = question;
+          
+          // Logic stages
+          let stage = 1;
+          
+          // Event listener for "Yes" button
+          yesButton.addEventListener('click', () => {
+            handleClick('yes');
+          });
+      
+          // Event listener for "No" button
+          noButton.addEventListener('click', () => {
+            handleClick('no');
+          });
+      
+          // Function to handle button clicks
+          function handleClick(response) {
+            switch (stage) {
+              case 1: // Question 1
+                if (response === 'yes') {
+                  stage = 2;
+                  question = "Has there been a failure or delay in remitting these accounts within 30 days?";
+                } else {
+                  stage = 0; // End process
+                  question = "This topic might not be relevant to you.";
+                  displayDoneButtons();
+                }
+                break;
+              case 2: // Question 2
+                if (response === 'yes') {
+                  stage = 0;
+                  question = "Violation Clause: Delays result in penalties. Penalty: The heads of offices and agencies shall be administratively liable for non-remittance or delayed remittance of premium contributions to the GSIS. Imprisonment of 1 to 5 years, and a fine of P10,000 to P20,000.";
+                  displayDoneButtons();
+                } else {
+                  stage = 0; // End process
+                  question = "No violations and no penalty incurred.";
+                  displayDoneButtons();
+                }
+                break;
+              
+              default:
+                question = "Process complete.";
+                break;
+            }
+            questionDiv.textContent = question;
+          }
+      
+          // Function to display "Done" and "Inquire Again" buttons
+          function displayDoneButtons() {
+            // Hide Yes/No buttons
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+            
+            // Show the "Done" and "Inquire Again" buttons
+            choicesButtonsDiv.style.display = 'block'; // Make the choices buttons visible
+          }
+        });
+
+        document.querySelectorAll('.done-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetPage = button.getAttribute('data-link');
+                window.location.href = targetPage;
+            });
+        });
+        document.querySelectorAll('.inquire-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetPage = button.getAttribute('data-link');
+                window.location.href = targetPage;
+            });
+        });
+      </script>
+      
+      
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 8291 Compliance Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-container">+
+            <img src="reload-icon.png" class="reload-icon-img">
+            <h1 class="header-text inclusive-sans-regular"> RA 8291 Compliance Checker</h1>
+        </div>
+
+        <div class="main-container">
+            <div class="left-div-container">
+                <div class="bar-background-left">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                    <div class="bar bar4"></div>
+                    <div class="bar bar5"></div>
+                </div>
+                <div class="title-box-left">The RA 8291 Compliance Checker helps determine if an action may violate
+                provisions of the Government Service Insurance System Act (RA 8291).
+                </div>
+            </div>
+
+            <div class="middle-div-container">
+                <div class="question-box">
+                    <div id="topic-buttons-container" class="choices-container">
+                        <button class="choices-buttons" data-link="employer-contribution.html">Employer Contribution and Budgeting Obligations</button>
+                        <button class="choices-buttons" data-link="fraudulent-transactions.html">Fraudulent and Misleading Transactions</button>
+                        <button class="choices-buttons" data-link="compliance-gsis.html">Compliance with GSIS Regulations</button>
+                        <button class="choices-buttons" data-link="employee-remittance.html">Employee Contributions and Remittance Delays</button>
+                        <button class="choices-buttons" data-link="government-offices.html">Government Offices and National Compliance</button>
+                        <button class="choices-buttons" data-link="board-responsibilities.html">Board Member Responsibilities</button>
+                    </div>
+                </div>
+                
+                <!-- Topic selection buttons will be dynamically displayed after answering the initial question -->
+
+            </div>
+
+            <div class="right-div-container">
+                <div class="bar-background-right">
+                    <div class="bar bar6"></div>
+                    <div class="bar bar7"></div>
+                    <div class="bar bar8"></div>
+                    <div class="bar bar9"></div>
+                    <div class="bar bar10"></div>
+                </div>
+                <div class="title-box-right">
+                    Answer each question with 'Yes' or 'No' to navigate through potential compliance issues.
+                    At the end, the system will indicate if there’s a possible violation, associated penalties, or if no breach was detected.
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-container">
+            <div class="bar-background-bottom"></div>
+            <div class="disclaimer-container">
+                <p class="disclaimer-text inclusive-sans-regular">
+                    This system is designed for informational and reference purposes only.
+                    It does not constitute legal advice. For accurate guidance and personalized
+                    assistance, please consult a licensed attorney or legal professional.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.choices-buttons').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetPage = button.getAttribute('data-link');
+                window.location.href = targetPage;
+            });
+        });
+    </script>
+</body>
+</html>
